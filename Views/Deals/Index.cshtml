@@ -1,0 +1,80 @@
+﻿@model IEnumerable<NguyenPhanHuy_2122110062.Models.Context.Product>
+@using NguyenPhanHuy_2122110062.Common
+
+@{
+    ViewBag.Title = "Sản phẩm giảm giá";
+}
+
+<section class="section-pagetop bg-light">
+    <div class="container">
+        <h2 class="title-page">Deals and offers</h2>
+    </div> <!-- container //  -->
+</section>
+
+<section class="section-content bg-white padding-y">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card-banner overlay-gradient"
+                     style="min-height:320px; background-image: url('../images/banners/banner1.jpg');">
+                    <div class="card-img-overlay white">
+                        <h3 class="card-title">Great Bundle only for 99$ <br> It is hassle free </h3>
+                        <p class="card-text" style="max-width: 400px">
+                            Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit, sed do eiusmod
+                            tempor incididunt.
+                        </p>
+                        <a href="" class="btn btn-warning">Learn more</a>
+                    </div>
+                </div> <!-- card-banner //end -->
+            </div> <!-- col.// -->
+            <div class="col-md-4">
+                <div class="card-banner"
+                     style="height:320px; background-image: url('../images/banners/banner8.jpg');">
+                    <article class="caption bottom">
+                        <h5 class="card-title">Watches</h5>
+                        <p>No matter how far along you are in your sophistication as an amateur.</p>
+                    </article>
+                </div><!-- card-banner //end -->
+            </div> <!-- col.// -->
+        </div> <!-- row.// -->
+
+        <br>
+        @if (Model != null && Model.Any())
+        {
+
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    var strImages = "";
+                    var image = item.ProductImage.FirstOrDefault(x => x.IsDefault);
+                    if (image != null)
+                    {
+                        strImages = image.Image;
+                    }
+                    <div class="col-md-3">
+                        <article class="card card-product-grid">
+                            <div class="img-wrap">
+                                <b class="badge badge-danger mr-1">SAVE %@item.DiscountPercentage</b>
+                                <img src="@strImages">
+                            </div>
+                            <div class="info-wrap">
+                                <a href="@Url.Action("Detail", "Product", new { alias = item.Alias, id = item.Id })" class="title">@item.Title</a>
+                                <div class="price-wrap my-2">
+                                    <span class="price"> @Format.FormatNumber(item.PriceSale) VND </span>
+                                    <del class="price-old"> @Format.FormatNumber(item.Price) VND </del>
+                                </div> <!-- price-wrap.// -->
+                                <a href="@Url.Action("Detail", "Product", new { alias = item.Alias, id = item.Id })" class="btn btn-block btn-primary">Đặt hàng ngay</a>
+                            </div>
+                        </article>
+                    </div> <!-- col.// -->
+                }
+            </div> <!-- row.// -->
+        }
+        else
+        {
+            <p class="text-center">Không có sản phẩm giảm giá nào!</p>
+        }
+    </div> <!-- container .//  -->
+
+</section>

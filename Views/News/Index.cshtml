@@ -1,0 +1,40 @@
+﻿@model PagedList.IPagedList<NguyenPhanHuy_2122110062.Models.Context.News>
+@using PagedList.Mvc;
+
+<section class="section-content padding-y">
+    <div class="container">
+        <div class="card mb-3">
+            <div class="card-body">
+                <ol class="breadcrumb float-left">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="#">Tin tức</a></li>
+                </ol>
+            </div> <!-- card-body .// -->
+        </div> <!-- card.// -->
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 col-sm-6">
+                        <a href="@Url.Action("Detail", "News", new { id = item.Id})">
+                            <article class="card card-post">
+                                <img src="@item.Image" alt="@item.Title" class="card-img-top">
+                                <div class="card-body">
+                                    <h6 class="title">@item.Title</h6>
+                                    <p class="small text-uppercase text-muted">@item.Description</p>
+                                </div>
+                            </article> <!-- card.// -->
+                        </a>
+                    </div> <!-- col.// -->
+                }
+            </div> <!-- row.// -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        }
+    </div>
+</section>

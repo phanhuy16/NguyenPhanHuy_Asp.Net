@@ -1,0 +1,117 @@
+﻿@using NguyenPhanHuy_2122110062.Common;
+
+@using (Ajax.BeginForm("AddSetting", "SettingSystem", FormMethod.Post, new AjaxOptions
+{
+    OnBegin = "OnBegin",
+    OnSuccess = "OnSuccess",
+    OnFailure = "OnFailure"
+}))
+{
+    <script>
+        function OnBegin() {
+            $('#load_page').html('<span class="spinner-border"></span>')
+        }
+        function OnSuccess(res) {
+            if (res.success) {
+                $('#load_page').html('');
+                toastr.success(res.message);
+            }
+        }
+        function OnFailure(res) { }
+
+        function BrowseServer(field) {
+            let finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        }
+    </script>
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <!-- /.col -->
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item btn-sm"><a class="nav-link active" href="#timeline" data-toggle="tab">Thông tin chung</a></li>
+                    <li class="nav-item btn-sm"><a class="nav-link" href="#settings" data-toggle="tab">SEO</a></li>
+                </ul>
+            </div><!-- /.card-header -->
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="timeline">
+                        <!-- The timeline -->
+                        <form class="form-horizontal">
+                            <div class="form-group row">
+                                <label for="inputName" class="col-sm-2 col-form-label">Tiêu đề trang</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputName" placeholder="Tiêu đề trang" name="SettingTitle" value="@SettingHelper.GetValue("SettingTitle")">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Logo</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="text" class="form-control" id="SettingLogo" placeholder="Logo" name="SettingLogo" value="@SettingHelper.GetValue("SettingLogo")">
+                                        </div>
+                                        <div class="input-group-append">
+                                            <input type="button" class="bg-default border-0 rounded-right" accept="image/*" value="Tải ảnh" onclick="BrowseServer('SettingLogo');" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputName2" class="col-sm-2 col-form-label">Hotline</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputName2" placeholder="Hotline" name="SettingHotline" value="@SettingHelper.GetValue("SettingHotline")">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputName2" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputName2" placeholder="Email" name="SettingEmail" value="@SettingHelper.GetValue("SettingEmail")">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.tab-pane -->
+
+                    <div class="tab-pane" id="settings">
+                        <form class="form-horizontal">
+                            <div class="form-group row">
+                                <label for="SettingTitleSeo" class="col-sm-2 col-form-label">Tiêu đề Seo</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="SettingTitleSeo" placeholder="Tiêu đề Seo" name="SettingTitleSeo" value="@SettingHelper.GetValue("SettingTitleSeo")">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="SettingDesSeo" class="col-sm-2 col-form-label">Mô tả Seo</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="SettingDesSeo" placeholder="Mô tả Seo" name="SettingDesSeo">@SettingHelper.GetValue("SettingDesSeo")</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="SettingKeySeo" class="col-sm-2 col-form-label">Từ khoá Seo</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="SettingKeySeo" placeholder="Từ khoá Seo" name="SettingKeySeo">@SettingHelper.GetValue("SettingKeySeo")</textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+
+                <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                </div>
+                <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+}

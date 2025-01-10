@@ -1,0 +1,23 @@
+﻿@model IEnumerable<NguyenPhanHuy_2122110062.Models.Context.Product>
+
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {
+        var strImages = "";
+        var image = item.ProductImage.FirstOrDefault(x => x.IsDefault);
+        if (image != null)
+        {
+            strImages = image.Image;
+        }
+        <li class="col-6 col-lg-3 col-md-4">
+            <a href="@Url.Action("Detail", "Product", new { alias = item.Alias, id = item.Id })" class="item">
+                <div class="card-body">
+                    <h6 class="title">@item.Title</h6>
+                    <img class="img-sm float-right" src="@strImages" alt="@item.Title">
+                    <p class="text-muted"><i class="fa fa-map-marker-alt"></i> Guanjou, China</p>
+                </div>
+            </a>
+        </li>
+    }
+}

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<NguyenPhanHuy_2122110062.Models.CartItem>
+@using NguyenPhanHuy_2122110062.Common
+
+@if (Model != null && Model.Any())
+{
+    var total = decimal.Zero;
+    <table class="table table-borderless table-shopping-cart">
+        <thead class="text-muted">
+            <tr class="small text-uppercase">
+                <th scope="col" class="h5">Product</th>
+                <th scope="col" width="120">Quantity</th>
+                <th scope="col" width="120">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                total += item.TotalPrice;
+                <tr>
+                    <td>
+                        <figure class="itemside">
+                            <div class="aside"><img src="@item.ProductImage" alt="@item.ProductName" class="img-sm"></div>
+                            <figcaption class="info">
+                                <a href="#" class="title text-dark">@item.ProductName</a>
+                                <p class="text-muted small">Size: XL, Color: blue, <br> Category: @item.CategoryName</p>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" value="@item.Quantity" />
+                    </td>
+                    <td style="width:160px">
+                        <div class="price-wrap">
+                            <var class="price">@Format.FormatNumber(item.Price) VND</var>
+                            <small class="text-muted"> @Format.FormatNumber(item.TotalPrice) VND each </small>
+                        </div> <!-- price-wrap .// -->
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}

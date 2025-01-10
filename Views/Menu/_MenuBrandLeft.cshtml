@@ -1,0 +1,24 @@
+﻿@model  IEnumerable<NguyenPhanHuy_2122110062.Models.Context.Brand>
+
+@if (Model != null && Model.Any())
+{
+    <article class="filter-group">
+        <h6 class="title">
+            <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_2"> Brands </a>
+        </h6>
+        <div class="filter-content collapse show" id="collapse_2">
+            <div class="inner">
+                @foreach (var item in Model)
+                {
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" checked="" class="custom-control-input">
+                        <label class="custom-control-label">
+                            <a href="@Url.Action("Index", "Product", new { type = "brand", id = item.Id })">@item.Title</a>
+                            <b class="badge badge-pill badge-light float-right">120</b>
+                        </label>
+                    </label>
+                }
+            </div> <!-- inner.// -->
+        </div>
+    </article> <!-- filter-group .// -->
+}

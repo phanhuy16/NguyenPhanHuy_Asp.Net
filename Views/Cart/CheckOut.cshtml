@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "CheckOut";
+}
+
+<style>
+    .error {
+        color: red;
+        margin-top: 5px;
+    }
+</style>
+
+<section class="section-content padding-y">
+    <div class="container" style="max-width: 1020px;">
+
+        @if (ViewBag.CheckCart != null)
+        {
+            <div class="card mb-4">
+                <div class="card-body">
+                    @Html.Action("PartialCartCheckOut", "Cart")
+
+                </div> <!-- card-body.// -->
+            </div> <!-- card .// -->
+            @Html.Action("PartialCheckOut", "Cart")
+        }
+        else
+        {
+            <div class="alert alert-info">
+                Vui lòng chọn sản phẩm trước khi thanh toán <a href="@Url.Action("Index", "Product", new {})">Quay lại</a>
+            </div>
+        }
+
+    </div> <!-- container .//  -->
+</section>
+
+@section scripts{
+    <script>
+        function OnSuccessCK(result) {
+            if (result.success) {
+                window.location.href = result.redirectUrl;
+            }
+            else {
+                console.error("Redirect URL is undefined or invalid:", result);
+            }
+        }
+
+
+        function OnFailured(result) {
+            if (result.success) {
+                toastr.error(result.message);
+            }
+        }
+
+        $(document).ready(function () {
+            $('#myForm').validate({
+                rules: {
+                    'CustomerName': {
+                        required: true
+                    },
+                    'Phone': {
+                        required: true
+                    },
+                    'Address': {
+                        required: true
+                    },
+                    'Email': {
+                        required: true,
+                        Email: true
+                    },
+                },
+                messages: {
+                    'CustomerName': "Vui lòng nhập họ và tên!",
+                    'Phone': "Vui lòng nhập số điện thoại!",
+                    'Address': "Vui lòng nhập địa chỉ nhận hàng!",
+                    'Email': "Vui lòng nhập email!"
+                }
+            });
+        });
+    </script>
+}

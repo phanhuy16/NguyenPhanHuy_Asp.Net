@@ -1,0 +1,27 @@
+﻿@model NguyenPhanHuy_2122110062.Models.Context.News
+
+@{
+    ViewBag.Title = "Chi tiết tin tức";
+}
+
+
+<section class="section-content padding-y">
+    <div class="container" style="max-width: 920px;">
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title mb-3">@Model.Title</h4>
+
+                <div class="card mt-4">
+                    <img src="@Model.Image" alt="@Model.Title" class="img-fluid"/>
+                </div>
+
+                <h6 class="mt-4">@Model.Description</h6>
+
+                <p>@Html.Raw(Model.Detail)</p>
+
+            </div> <!-- card-body.// -->
+        </div>  <!-- card .// -->
+        <br><br>
+    </div> <!-- container .//  -->
+</section>

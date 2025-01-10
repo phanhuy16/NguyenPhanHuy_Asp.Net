@@ -1,0 +1,27 @@
+﻿@model IEnumerable<NguyenPhanHuy_2122110062.Models.Context.Product>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row no-gutters items-wrap">
+        @foreach (var item in Model)
+        {
+            var strImages = "";
+            var image = item.ProductImage.FirstOrDefault(x => x.IsDefault);
+            if (image != null)
+            {
+                strImages = image.Image;
+            }
+            <div class="col-md col-6">
+                <figure class="card-product-grid card-sm">
+                    <a href="@Url.Action("Detail", "Product", new { alias = item.Alias, id = item.Id })" class="img-wrap">
+                        <img src="@strImages" alt="@item.Title">
+                    </a>
+                    <div class="text-wrap p-3">
+                        <a href="@item.Alias" class="title">@item.Title</a>
+                        <span class="badge badge-danger"> @item.DiscountPercentage% </span>
+                    </div>
+                </figure>
+            </div> <!-- col.// -->
+        }
+    </div>
+}

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<NguyenPhanHuy_2122110062.Models.Context.News>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-sm-6">
+                <a href="@Url.Action("Detail", "News", new { id = item.Id})">
+                    <article class="card card-post">
+                        <img src="@item.Image" alt="@item.Title" class="card-img-top">
+                        <div class="card-body">
+                            <h6 class="title">@item.Title</h6>
+                            <p class="small text-uppercase text-muted">@item.Description</p>
+                        </div>
+                    </article> <!-- card.// -->
+                </a>
+            </div> <!-- col.// -->
+        }
+    </div> <!-- row.// -->
+}

@@ -1,0 +1,42 @@
+﻿@model NguyenPhanHuy_2122110062.Models.Context.Subscribe
+
+<section class="section-subscribe padding-y-lg">
+    <div class="container">
+
+        <p class="pb-2 text-center text-white">Delivering the latest product trends and industry news straight to your inbox</p>
+
+        <div class="row justify-content-md-center">
+            <div class="col-lg-5 col-md-6">
+                @using (Ajax.BeginForm("Subscribe", "Home", new AjaxOptions
+                {
+                    OnBegin = "OnBeginSub",
+                    OnSuccess = "OnSuccessSub",
+                    OnFailure = "OnFailureSub",
+                }, new { }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <script>
+                        function OnBeginSub() { }
+                        function OnSuccessSub(res) {
+                            if (res.success) {
+                                toastr.success(res.message)
+                            }
+                        }
+                        function OnFailureSub(res) { }
+                    </script>
+                    <div class="form-row">
+                        <div class="col-md-8 col-7">
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control border-0", @placeholder = "Your Email", @type = "email", @required = "required" })
+                            @*@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
+                        </div> <!-- col.// -->
+                        <div class="col-md-4 col-5">
+                            <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
+                        </div> <!-- col.// -->
+                    </div>
+                }
+                <small class="form-text text-white-50">We’ll never share your email address with a third-party. </small>
+            </div> <!-- col-md-6.// -->
+        </div>
+    </div>
+</section>

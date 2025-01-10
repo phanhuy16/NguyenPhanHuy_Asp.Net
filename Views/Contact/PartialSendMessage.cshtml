@@ -1,0 +1,53 @@
+﻿@model NguyenPhanHuy_2122110062.Models.Context.Contact
+
+<div class="card card-body">
+    <h4 class="title py-3 text-center">Liên hệ</h4>
+    @using (Ajax.BeginForm("SendMessage", "Contact", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnBegin = "OnBegin",
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure"
+    }))
+    {
+        <script>
+            function OnBegin() { }
+            function OnSuccess(res) {
+                if (res.success) {
+                    toastr.success(res.message);
+                }
+            }
+            function OnFailure(res) { }
+        </script>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="col-form-label">Tên liên hệ</label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Tên liên hệ" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger mt-2" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-form-label">Website</label>
+            @Html.TextBoxFor(x => x.Website, new { @class = "form-control", @placeholder = "Website" })
+            @Html.ValidationMessageFor(m => m.Website, "", new { @class = "text-danger mt-2" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-form-label">Địa chỉ email</label>
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Địa chỉ email" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger mt-2" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-form-label">Tin nhắn</label>
+            @Html.TextAreaFor(x => x.Message, new { @class = "form-control", @placeholder = "Tin nhắn" })
+            @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger mt-2" })
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary w-100 mt-3" type="submit">Gửi</button>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+    ViewBag.Menu = "Cart";
+}
+
+
+<section class="section-content padding-y">
+    <div class="container">
+        <div class="row" id="loading-data">
+            @Html.Action("PartialCartItem", "Cart")
+        </div>
+    </div> <!-- container .//  -->
+</section>

@@ -1,0 +1,9 @@
+﻿@if (TempData["success"] != null)
+{
+    <input type="hidden" id="success" value="@TempData["success"]" />
+}
+
+@if (TempData["error"] != null)
+{
+    <input type="hidden" id="error" value="@TempData["error"]" />
+}

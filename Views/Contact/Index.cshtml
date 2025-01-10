@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Liên hệ";
+}
+
+<div class="container">
+    <section class="section-content padding-y">
+        <div class="card mb-3">
+            <div class="card-body">
+                <ol class="breadcrumb float-left">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="#">Liên hệ</a></li>
+                </ol>
+            </div> <!-- card-body .// -->
+        </div> <!-- card.// -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250944.85228868894!2d107.08948398938698!3d10.656072965966937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31750864691e59c5%3A0xa7bcb50e575a31bb!2zQ2jDonUgxJDhu6ljLCBCw6AgUuG7i2EgLSBWxaluZyBUw6B1LCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1736243779341!5m2!1svi!2s" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div> <!-- col // -->
+                <div class="col-md-4">
+
+                    @Html.Action("PartialSendMessage", "Contact")
+
+                </div> <!-- col // -->
+            </div> <!-- row // -->
+        </div>
+    </section>
+</div>

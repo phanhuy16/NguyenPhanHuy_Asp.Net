@@ -1,0 +1,208 @@
+﻿@model NguyenPhanHuy_2122110062.Models.OrderModel
+@{
+    if (ViewBag.User != null)
+    {
+        var user = ViewBag.User as NguyenPhanHuy_2122110062.Models.ApplicationUser;
+    }
+}
+
+@using (Ajax.BeginForm("CheckOut", "Cart", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "loading-data", OnSuccess = "OnSuccessCK", OnFailure = "OnFailured" }, new { @Id = "myForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    if (Request.IsAuthenticated)
+    {
+        var user = ViewBag.User as NguyenPhanHuy_2122110062.Models.ApplicationUser;
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title mb-3">Delivery info</h4>
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>Họ và tên</label>
+                        <input type="text" class="form-control" placeholder="" value="@user.FullName" name="CustomerName">
+                    </div> <!-- form-group end.// -->
+                    <div class="col form-group">
+                        <label>Số điện thoại</label>
+                        <input type="text" class="form-control" placeholder="" value="@user.PhoneNumber" name="Phone">
+                    </div> <!-- form-group end.// -->
+                </div> <!-- form-row end.// -->
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" placeholder="" value="@user.Email" name="Email">
+                    </div> <!-- form-group end.// -->
+                    <div class="col form-group">
+                        <label>Địa chỉ</label>
+                        <input type="text" class="form-control" placeholder=""  name="Address">
+                    </div> <!-- form-group end.// -->
+                </div> <!-- form-row end.// -->
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>Tỉnh Thành</label>
+                        <select class="form-control" id="tinh" title="Chọn Tỉnh Thành">
+                            <option value="0">@user.City</option>
+                        </select>
+                        <input type="hidden" id="CityName" name="City">
+                    </div> <!-- form-group// -->
+                    <div class="form-group col">
+                        <label>Quận huyện</label>
+                        <select class="form-control" id="quan" title="Chọn Quận Huyện">
+                            <option value="0">@user.District</option>
+                        </select>
+                        <input type="hidden" id="DistrictName" name="District">
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group col">
+                        <label>Phường xã</label>
+                        <select class="form-control" id="phuong" title="Chọn Phường Xã">
+                            <option value="0">@user.Ward</option>
+                        </select>
+                        <input type="hidden" id="WardName" name="Ward">
+                    </div> <!-- form-group end.// -->
+                </div> <!-- form-row.// -->
+
+            </div> <!-- card-body.// -->
+        </div> <!-- card .// -->
+    }
+    else
+    {
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title mb-3">Delivery info</h4>
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>Họ và tên</label>
+                        <input type="text" class="form-control" placeholder="" name="CustomerName">
+                    </div> <!-- form-group end.// -->
+                    <div class="col form-group">
+                        <label>Số điện thoại</label>
+                        <input type="text" class="form-control" placeholder="" name="Phone">
+                    </div> <!-- form-group end.// -->
+                </div> <!-- form-row end.// -->
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" placeholder="" name="Email">
+                    </div> <!-- form-group end.// -->
+                    <div class="col form-group">
+                        <label>Địa chỉ</label>
+                        <input type="text" class="form-control" placeholder="" name="Address">
+                    </div> <!-- form-group end.// -->
+                </div> <!-- form-row end.// -->
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>Tỉnh Thành</label>
+                        <select class="form-control" id="tinh" title="Chọn Tỉnh Thành">
+                            <option value="0">Tỉnh Thành</option>
+                        </select>
+                        <input type="hidden" id="CityName" name="City">
+                    </div> <!-- form-group// -->
+                    <div class="form-group col">
+                        <label>Quận huyện</label>
+                        <select class="form-control" id="quan" title="Chọn Quận Huyện">
+                            <option value="0">Quận Huyện</option>
+                        </select>
+                        <input type="hidden" id="DistrictName" name="District">
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group col">
+                        <label>Phường xã</label>
+                        <select class="form-control" id="phuong" title="Chọn Phường Xã">
+                            <option value="0">Phường Xã</option>
+                        </select>
+                        <input type="hidden" id="WardName" name="Ward">
+                    </div> <!-- form-group end.// -->
+                </div> <!-- form-row.// -->
+
+            </div> <!-- card-body.// -->
+        </div> <!-- card .// -->
+    }
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Thanh toán</h4>
+            <form role="form" style="max-width: 720px; margin: 0 auto;">
+                <div class="form-group col-md-12">
+                    <label>Hình thức thanh toán</label>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label class="js-check box">
+                                <input type="radio" name="TypePayment" value="1" checked>
+                                <span class="title h6">COD</span>
+                                <span class="text-muted d-block">Extra 20$ will be charged </span>
+                            </label> <!-- js-check.// -->
+                        </div>
+
+                        <div class="form-group col-sm-6">
+                            <label class="js-check box active">
+                                <input type="radio" name="TypePayment" value="2">
+                                <span class="title h6">Thanh toán trực tuyến</span>
+                                <span class="text-muted d-block">Free by airline within 20 days</span>
+                            </label> <!-- js-check.// -->
+                        </div>
+                    </div> <!-- form row.// -->
+                </div>
+                <button class="subscribe btn btn-primary btn-block" type="submit"> Confirm  </button>
+            </form>
+        </div> <!-- card-body.// -->
+    </div> <!-- card .// -->
+}
+
+<script src="https://esgoo.net/scripts/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tinh").on("change", function () {
+            var cityName = $("#tinh option:selected").text().replace(/^(Tỉnh|TP|Thành phố)\s*/i, '');
+            $("#CityName").val(cityName);
+        })
+
+        $("#quan").on("change", function () {
+            var districtName = $("#quan option:selected").text().replace(/^(Quận|Huyện|Thị xã|Thành phố)\s*/i, '');
+            $("#DistrictName").val(districtName);
+        })
+
+        $("#phuong").on("change", function () {
+            var wardName = $("#phuong option:selected").text().replace(/^(Phường|Xã|Thị trấn)\s*/i, '');
+            $("#WardName").val(wardName);
+        })
+
+        //Lấy tỉnh thành
+        $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function (data_tinh) {
+            if (data_tinh.error == 0) {
+                $.each(data_tinh.data, function (key_tinh, val_tinh) {
+                    $("#tinh").append('<option value="' + val_tinh.id + '">' + val_tinh.full_name + '</option>');
+                });
+                $("#tinh").change(function (e) {
+                    var idtinh = $(this).val();
+                    //Lấy quận huyện
+                    $.getJSON('https://esgoo.net/api-tinhthanh/2/' + idtinh + '.htm', function (data_quan) {
+                        if (data_quan.error == 0) {
+                            $("#quan").html('<option value="0">Quận Huyện</option>');
+                            $("#phuong").html('<option value="0">Phường Xã</option>');
+                            $.each(data_quan.data, function (key_quan, val_quan) {
+                                $("#quan").append('<option value="' + val_quan.id + '">' + val_quan.full_name + '</option>');
+                            });
+                            //Lấy phường xã
+                            $("#quan").change(function (e) {
+                                var idquan = $(this).val();
+                                $.getJSON('https://esgoo.net/api-tinhthanh/3/' + idquan + '.htm', function (data_phuong) {
+                                    if (data_phuong.error == 0) {
+                                        $("#phuong").html('<option value="0">Phường Xã</option>');
+                                        $.each(data_phuong.data, function (key_phuong, val_phuong) {
+                                            $("#phuong").append('<option value="' + val_phuong.id + '">' + val_phuong.full_name + '</option>');
+                                        });
+                                    }
+                                });
+                            });
+
+                        }
+                    });
+                });
+
+            }
+        });
+    });
+</script>

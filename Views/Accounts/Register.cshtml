@@ -1,0 +1,148 @@
+﻿@model NguyenPhanHuy_2122110062.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+
+<section class="section-content padding-y">
+    <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+        <article class="card-body">
+            <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+            @using (Html.BeginForm("Register", "Accounts", FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <br>
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>Họ và tên</label>
+                        @Html.TextBoxFor(x => x.FullName, new { @class = "form-control" })
+                    </div> <!-- form-group end.// -->
+                    <div class="col form-group">
+                        <label>Số điện thoại</label>
+                        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+                    </div> <!-- form-group end.// -->
+                </div> <!-- form-row end.// -->
+                <div class="form-group">
+                    <label>Email</label>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @type = "email" })
+                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div> <!-- form-group end.// -->
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label>Tỉnh Thành</label>
+                        <select class="form-control" id="tinh" title="Chọn Tỉnh Thành">
+                            <option value="0">Tỉnh Thành</option>
+                        </select>
+                        <input type="hidden" id="CityName" name="City">
+                    </div> <!-- form-group// -->
+                    <div class="form-group col">
+                        <label>Quận huyện</label>
+                        <select class="form-control" id="quan" title="Chọn Quận Huyện">
+                            <option value="0">Quận Huyện</option>
+                        </select>
+                        <input type="hidden" id="DistrictName" name="District">
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group col">
+                        <label>Phường xã</label>
+                        <select class="form-control" id="phuong" title="Chọn Phường Xã">
+                            <option value="0">Phường Xã</option>
+                        </select>
+                        <input type="hidden" id="WardName" name="Ward">
+                    </div> <!-- form-group end.// -->
+                </div> <!-- form-row.// -->
+                <div class="form-group">
+                    <label class="custom-control custom-radio custom-control-inline">
+                        @Html.RadioButtonFor(x => x.Gender, "0", new { @class = "custom-control-input", @checked = "checked" })
+                        <span class="custom-control-label"> Male </span>
+                    </label>
+                    <label class="custom-control custom-radio custom-control-inline">
+                        @Html.RadioButtonFor(x => x.Gender, "1", new { @class = "custom-control-input" })
+                        <span class="custom-control-label"> Female </span>
+                    </label>
+                </div> <!-- form-group end.// -->
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Create password</label>
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group col-md-6">
+                        <label>Repeat password</label>
+                        @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })
+                    </div> <!-- form-group end.// -->
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Register  </button>
+                </div> <!-- form-group// -->
+                <div class="form-group">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" checked="">
+                        <span class="custom-control-label"> I am agree with <a href="#">terms and contitions</a>  </span>
+                    </label>
+                </div> <!-- form-group end.// -->
+            }
+            <form>
+            </form>
+        </article><!-- card-body.// -->
+    </div> <!-- card .// -->
+    <p class="text-center mt-4">Have an account? <a href="@Url.Action("Login", "Accounts", new {area=""})">Log In</a></p>
+    <br><br>
+</section>
+
+
+<script src="https://esgoo.net/scripts/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tinh").on("change", function () {
+            var cityName = $("#tinh option:selected").text().replace(/^(Tỉnh|TP|Thành phố)\s*/i, '');
+            $("#CityName").val(cityName);
+        })
+
+        $("#quan").on("change", function () {
+            var districtName = $("#quan option:selected").text().replace(/^(Quận|Huyện|Thị xã|Thành phố)\s*/i, '');
+            $("#DistrictName").val(districtName);
+        })
+
+        $("#phuong").on("change", function () {
+            var wardName = $("#phuong option:selected").text().replace(/^(Phường|Xã|Thị trấn)\s*/i, '');
+            $("#WardName").val(wardName);
+        })
+
+        //Lấy tỉnh thành
+        $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function (data_tinh) {
+            if (data_tinh.error == 0) {
+                $.each(data_tinh.data, function (key_tinh, val_tinh) {
+                    $("#tinh").append('<option value="' + val_tinh.id + '">' + val_tinh.full_name + '</option>');
+                });
+                $("#tinh").change(function (e) {
+                    var idtinh = $(this).val();
+                    //Lấy quận huyện
+                    $.getJSON('https://esgoo.net/api-tinhthanh/2/' + idtinh + '.htm', function (data_quan) {
+                        if (data_quan.error == 0) {
+                            $("#quan").html('<option value="0">Quận Huyện</option>');
+                            $("#phuong").html('<option value="0">Phường Xã</option>');
+                            $.each(data_quan.data, function (key_quan, val_quan) {
+                                $("#quan").append('<option value="' + val_quan.id + '">' + val_quan.full_name + '</option>');
+                            });
+                            //Lấy phường xã
+                            $("#quan").change(function (e) {
+                                var idquan = $(this).val();
+                                $.getJSON('https://esgoo.net/api-tinhthanh/3/' + idquan + '.htm', function (data_phuong) {
+                                    if (data_phuong.error == 0) {
+                                        $("#phuong").html('<option value="0">Phường Xã</option>');
+                                        $.each(data_phuong.data, function (key_phuong, val_phuong) {
+                                            $("#phuong").append('<option value="' + val_phuong.id + '">' + val_phuong.full_name + '</option>');
+                                        });
+                                    }
+                                });
+                            });
+
+                        }
+                    });
+                });
+
+            }
+        });
+    });
+</script>

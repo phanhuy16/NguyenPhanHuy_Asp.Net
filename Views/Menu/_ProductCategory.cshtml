@@ -1,0 +1,35 @@
+﻿@model IEnumerable<NguyenPhanHuy_2122110062.Models.Context.ProductCategory>
+
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <!-- =============== SECTION 1 =============== -->
+        <section class="padding-bottom">
+            <header class="section-heading heading-line">
+                <h4 class="title-section text-uppercase">@item.Title</h4>
+            </header>
+
+            <div class="card card-home-category">
+                <div class="row no-gutters">
+                    <div class="col-md-3">
+
+                        <div class="home-category-banner bg-light-orange">
+                            <h5 class="title">@item.SeoTitle</h5>
+                            <p>@item.SeoDescription</p>
+                            <a href="#" class="btn btn-outline-primary rounded-pill">Source now</a>
+                            <img src="@item.Icon" class="img-bg" alt="@item.Icon">
+                        </div>
+
+                    </div> <!-- col.// -->
+                    <div class="col-md-9">
+                        <ul class="row no-gutters bordered-cols">
+                            @Html.Action("PartialItemsCategory", "Product", new {CateId = item.Id})
+                        </ul>
+                    </div> <!-- col.// -->
+                </div> <!-- row.// -->
+            </div> <!-- card.// -->
+        </section>
+        <!-- =============== SECTION 1 END =============== -->
+    }
+}

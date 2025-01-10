@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Trang cá nhân";
+}
+
+<section class="section-pagetop bg-gray">
+    <div class="container">
+        <h2 class="title-page">Tài khoản của tôi</h2>
+    </div> <!-- container //  -->
+</section>
+
+<section class="section-content padding-y">
+    <div class="container">
+
+        <div class="row">
+            <aside class="col-md-3">
+                <nav class="list-group">
+                    <a class="list-group-item @(ViewBag.Active == "Account" ? "active" : "")" href="@Url.Action("Index", "Profile", new {tab = "Account"})"> Account overview  </a>
+                    <a class="list-group-item @(ViewBag.Active == "Address" ? "active" : "")" href="@Url.Action("Index", "Profile", new {tab = "Address"})"> My Address </a>
+                    <a class="list-group-item @(ViewBag.Active == "Order" ? "active" : "")" href="@Url.Action("Index", "Profile", new {tab = "Order"})"> My Orders </a>
+                    <a class="list-group-item @(ViewBag.Active == "Wishlist" ? "active" : "")" href="@Url.Action("Index", "Profile", new {tab = "Wishlist"})"> My wishlist </a>
+                    <a class="list-group-item @(ViewBag.Active == "Selling" ? "active" : "")" href="@Url.Action("Index", "Profile", new {tab = "Selling"})"> My Selling Items </a>
+                    <a class="list-group-item @(ViewBag.Active == "Setting" ? "active" : "")" href="@Url.Action("Index", "Profile", new {tab = "Setting"})"> Settings </a>
+                    <a class="list-group-item" href="javascript:document.getElementById('LogOffForm').submit()"> Log out <i class="fas fa-sign-out-alt"></i></a>
+                </nav>
+            </aside> <!-- col.// -->
+            <main class="col-md-9">
+                @if (ViewBag.Active == "Account")
+                {
+                    @Html.Action("PartialAccount", "Profile")
+                }
+                else if (ViewBag.Active == "Address")
+                {
+                    @Html.Action("PartialAddress", "Profile")
+                }
+                else if (ViewBag.Active == "Order")
+                {
+                    @Html.Action("PartialOrder", "Profile")
+                }
+                else if (ViewBag.Active == "Wishlist")
+                {
+                    @Html.Action("PartialWishlist", "Profile")
+                }
+                else if (ViewBag.Active == "Selling")
+                {
+                    @Html.Action("PartialSelling", "Profile")
+                }
+                else if (ViewBag.Active == "Setting")
+                {
+                    @Html.Action("PartialSetting", "Profile")
+                }
+            </main> <!-- col.// -->
+        </div>
+
+    </div> <!-- container .//  -->
+</section>
+
+@if (Request.IsAuthenticated)
+{
+    <div class="d-none">
+        @using (Html.BeginForm("logOff", "Accounts", FormMethod.Post, new { @id = "LogOffForm" }))
+        {
+            @Html.AntiForgeryToken()
+        }
+    </div>
+}

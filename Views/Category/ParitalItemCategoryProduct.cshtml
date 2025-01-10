@@ -1,0 +1,12 @@
+﻿@model IEnumerable<NguyenPhanHuy_2122110062.Models.Context.Product>
+
+@if (Model != null && Model.Any())
+{
+    <ul class="list-menu">
+        @foreach (var item in Model)
+        {
+            <li><a href="@Url.Action("Detail", "Product", new { alias = item.Alias, id = item.Id })">@item.Title</a></li>
+        }
+    </ul>
+}
+

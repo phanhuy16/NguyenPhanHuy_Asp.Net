@@ -1,0 +1,59 @@
+﻿@model IEnumerable<NguyenPhanHuy_2122110062.Models.Context.ProductCategory>
+@{
+    ViewBag.Title = "Category";
+    ViewBag.Menu = "Category";
+}
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+    <div class="container">
+        <nav class="row">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="col-md-3">
+                        <a href="@Url.Action("Index", "Product", new { alias = item.Alias, id = item.Id })">
+                            <div class="card card-category">
+                                <div class="img-wrap" style="background: #ffd7d7">
+                                    <img src="@Url.Content(item.Icon)">
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title"><a href="#">@item.Title</a></h4>
+                                    @Html.Action("ParitalItemCategoryProduct", "Category", new { id = item.Id })
+                                </div>
+                            </div>
+                        </a>
+                    </div> <!-- col.// -->
+                }
+            }
+        </nav> <!-- row.// -->
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+@section Footer{
+    <!-- ========================= SECTION SUBSCRIBE  ========================= -->
+    <section class="padding-y-lg bg-light border-top">
+        <div class="container">
+
+            <p class="pb-2 text-center">Delivering the latest product trends and industry news straight to your inbox</p>
+
+            <div class="row justify-content-md-center">
+                <div class="col-lg-4 col-sm-6">
+                    <form class="form-row">
+                        <div class="col-8">
+                            <input class="form-control" placeholder="Your Email" type="email">
+                        </div> <!-- col.// -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
+                        </div> <!-- col.// -->
+                    </form>
+                    <small class="form-text">We’ll never share your email address with a third-party. </small>
+                </div> <!-- col-md-6.// -->
+            </div>
+
+
+        </div>
+    </section>
+    <!-- ========================= SECTION SUBSCRIBE END// ========================= -->
+}

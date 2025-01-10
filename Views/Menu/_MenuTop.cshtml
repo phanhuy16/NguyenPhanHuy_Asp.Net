@@ -1,0 +1,15 @@
+﻿@model IEnumerable<NguyenPhanHuy_2122110062.Models.Context.Category>
+
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {
+        if (!string.IsNullOrEmpty(item.Link))
+        {
+            item.Alias = item.Link;
+        }
+        <li class="nav-item">
+            <a class="nav-link" href="/@item.Alias">@item.Title</a>
+        </li>
+    }
+}

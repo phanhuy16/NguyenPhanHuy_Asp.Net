@@ -1,0 +1,42 @@
+﻿@model NguyenPhanHuy_2122110062.Models.StatisticalModel
+
+@if (Model != null)
+{
+    <article class="filter-group">
+        <h6 class="title">
+            <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1">	 Hôm nay </a>
+        </h6>
+        <div class="filter-content collapse show" id="collapse_1" style="">
+            <div class="inner">
+                <span> Số lượng truy cập: </span>
+                <span> @Model.HomNay </span>
+            </div> <!-- inner.// -->
+        </div>
+    </article> <!-- filter-group  .// -->
+
+    <article class="filter-group">
+        <h6 class="title">
+            <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1">	 Hôm qua </a>
+        </h6>
+        <div class="filter-content collapse show" id="collapse_1" style="">
+            <div class="inner">
+                <span> Số lượng truy cập: </span>
+                <span> @Model.HomQua </span>
+            </div> <!-- inner.// -->
+        </div>
+    </article> <!-- filter-group  .// -->
+
+    <article class="filter-group">
+        <h6 class="title">
+            <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1">	 Tuần này </a>
+        </h6>
+        <div class="filter-content collapse show" id="collapse_1" style="">
+            <div class="inner">
+                <span> Số lượng truy cập: </span>
+                <span> @Model.TuanNay </span>
+            </div> <!-- inner.// -->
+        </div>
+    </article> <!-- filter-group  .// -->
+}
+
+

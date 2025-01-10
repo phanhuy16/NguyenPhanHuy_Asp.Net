@@ -1,0 +1,173 @@
+﻿<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+        <img src="~/Content/Admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">AdminLTE 3</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="~/Content/Admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">@User.Identity.Name</a>
+            </div>
+        </div>
+
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+                <li class="nav-item menu-open">
+                    <a href="@Url.Action("Index", "Dashboard", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Dashboard" ? "active" : "")">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Category", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Danh mục" ? "active" : "")">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Danh mục
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "News", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Tin tức" ? "active" : "")">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Tin tức
+                            <span class="badge badge-info right">6</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link @(ViewBag.Menu == "Sản phẩm" ? "active" : "")">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Quản lý sản phẩm
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Products", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Sản phẩm" ? "active" : "")">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sản phẩm</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "ProductCategory", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Danh mục sản phẩm" ? "active" : "")">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh mục sản phẩm</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Posts", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Bài viết" ? "active" : "")">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Bài viết
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Order", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Đơn hàng" ? "active" : "")">
+                        <i class="nav-icon fas fa-dolly-flatbed"></i>
+                        <p>
+                            Đơn hàng
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Role", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Phân quyền" ? "active" : "")">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Phân quyền
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Account", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Người dùng" ? "active" : "")">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Người dùng
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "SettingSystem", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Cấu hình hệ thống" ? "active" : "")">
+                        <i class="fas fa-cogs"></i>
+                        <p>
+                            Cấu hình hệ thống
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Contact", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Liên hệ" ? "active" : "")">
+                        <i class="nav-icon fas fa-sms"></i>
+                        <p>
+                            Liên hệ
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Statistical", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Thống kê" ? "active" : "")">
+                        <i class="nav-icon fas fa-chart-bar"></i>
+                        <p>
+                            Thống kê
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Brand", new {area="Admin"})" class="nav-link @(ViewBag.Menu == "Thương hiệu" ? "active" : "")">
+                        <i class="nav-icon fas fa-spa"></i>
+                        <p>
+                            Thương hiệu
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-circle text-danger"></i>
+                        <p class="text">Important</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-circle text-warning"></i>
+                        <p>Warning</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-circle text-info"></i>
+                        <p>Informational</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

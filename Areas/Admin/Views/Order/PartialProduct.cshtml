@@ -1,0 +1,18 @@
+﻿@model IEnumerable<NguyenPhanHuy_2122110062.Models.Context.OrderDetail>
+@using NguyenPhanHuy_2122110062.Common
+
+@if (Model != null && Model.Any())
+{
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Quantity</td>
+                <td>@item.Product.Title</td>
+                <td>@item.Order.Phone</td>
+                <td>@item.Order.CreatedDate.ToString("dd/MM/yyyy")</td>
+                <td>@Format.FormatNumber(item.Order.TotalAmount)</td>
+            </tr>
+        }
+    </tbody>
+}

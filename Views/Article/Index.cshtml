@@ -1,0 +1,46 @@
+﻿@model NguyenPhanHuy_2122110062.Models.Context.Posts
+@{
+    ViewBag.Title = "Chi tiết bài viết";
+}
+
+
+@if (Model != null)
+{
+
+    <section class="section-pagetop bg-light">
+        <div class="container">
+            <h2 class="title-page">@Model.Title</h2>
+        </div> <!-- container .// -->
+    </section>
+
+    <section class="section-content bg-white padding-y">
+        <div class="container">
+
+            <h5 class="card-title">@Model.Description</h5>
+            <p>
+                @Html.Raw(Model.Detail)
+            </p>
+
+            <br><br>
+
+            <a href="@Url.Action("Index", "Home", new {})" class="btn btn-light"> &laquo Go back</a>
+
+
+
+        </div> <!-- container .//  -->
+    </section>
+
+}
+else
+{
+    <section class="section-content bg-white padding-y">
+        <div class="container">
+            <p>
+               Không có bài viết mới nào!
+            </p>
+
+            <br><br>
+        </div> <!-- container .//  -->
+    </section>
+
+}
