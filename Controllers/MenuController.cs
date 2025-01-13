@@ -13,6 +13,7 @@ namespace NguyenPhanHuy_2122110062.Controllers
         // GET: Menu
         public ActionResult Index()
         {
+            ViewBag.Visitors_online = HttpContext.Application["visitors_online"];
             return View();
         }
 

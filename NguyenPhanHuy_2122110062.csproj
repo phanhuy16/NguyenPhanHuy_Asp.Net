@@ -196,6 +196,7 @@
     <Compile Include="Areas\Admin\Controllers\StatisticalController.cs" />
     <Compile Include="Common\AccessStatistics.cs" />
     <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\Payment\VnPayLibrary.cs" />
     <Compile Include="Common\SettingHelper.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
@@ -272,6 +273,10 @@
     <Compile Include="Migrations\202501100326478_EditBrand.cs" />
     <Compile Include="Migrations\202501100326478_EditBrand.Designer.cs">
       <DependentUpon>202501100326478_EditBrand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501131357302_AddStatusInOrder.cs" />
+    <Compile Include="Migrations\202501131357302_AddStatusInOrder.Designer.cs">
+      <DependentUpon>202501131357302_AddStatusInOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3669,7 +3674,6 @@
     <Content Include="Views\Cart\CheckOut.cshtml" />
     <Content Include="Views\Cart\PartialCartCheckOut.cshtml" />
     <Content Include="Views\Cart\PartialCheckOut.cshtml" />
-    <Content Include="Views\Cart\CheckOutSuccess.cshtml" />
     <Content Include="Views\Home\Refresh.cshtml" />
     <Content Include="Views\News\PartialNewsItem.cshtml" />
     <Content Include="Views\Home\PartialSubscribe.cshtml" />
@@ -3689,6 +3693,7 @@
     <Content Include="Views\Product\PartialProductPopular.cshtml" />
     <Content Include="Views\Contact\PartialSendMessage.cshtml" />
     <Content Include="Views\Menu\_MenuBrandLeft.cshtml" />
+    <Content Include="Views\Cart\VnPayReturn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3745,6 +3750,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501100326478_EditBrand.resx">
       <DependentUpon>202501100326478_EditBrand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501131357302_AddStatusInOrder.resx">
+      <DependentUpon>202501131357302_AddStatusInOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

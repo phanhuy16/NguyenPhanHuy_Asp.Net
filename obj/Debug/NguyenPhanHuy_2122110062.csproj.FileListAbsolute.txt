@@ -128,3 +128,4 @@ D:\Projects\DotNet\NguyenPhanHuy_2122110062\obj\Debug\NguyenPhanHuy_2122110062.M
 D:\Projects\DotNet\NguyenPhanHuy_2122110062\obj\Debug\NguyenPhanHuy_2122110062.Migrations.UpdateCustomerIdinOrder.resources
 D:\Projects\DotNet\NguyenPhanHuy_2122110062\obj\Debug\NguyenPhanHuy_2122110062.Migrations.NewBrand.resources
 D:\Projects\DotNet\NguyenPhanHuy_2122110062\obj\Debug\NguyenPhanHuy_2122110062.Migrations.EditBrand.resources
+D:\Projects\DotNet\NguyenPhanHuy_2122110062\obj\Debug\NguyenPhanHuy_2122110062.Migrations.AddStatusInOrder.resources

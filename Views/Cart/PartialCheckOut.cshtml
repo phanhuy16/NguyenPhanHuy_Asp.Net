@@ -1,13 +1,31 @@
 ﻿@model NguyenPhanHuy_2122110062.Models.OrderModel
-@{
-    if (ViewBag.User != null)
-    {
-        var user = ViewBag.User as NguyenPhanHuy_2122110062.Models.ApplicationUser;
-    }
-}
 
-@using (Ajax.BeginForm("CheckOut", "Cart", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "loading-data", OnSuccess = "OnSuccessCK", OnFailure = "OnFailured" }, new { @Id = "myForm" }))
+@using (Ajax.BeginForm("CheckOut", "Cart", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "loading-data", OnSuccess = "OnSuccessCK", OnFailure = "OnFailured", OnBegin = "OnBeginCK" }, new { @Id = "myForm" }))
 {
+    <script>
+        function OnBeginCK(result) {
+            $('#btnHidden').attr("disabled", "disabled")
+            $('#load_send').html("<div class='spinner-border'></div>");
+        }
+
+        function OnSuccessCK(result) {
+            if (result.success) {
+                if (result.code === 1) {
+                    location.href = "/Cart/CheckOutSuccess";
+                } else {
+                    location.href = result.Url;
+                }
+            }
+        }
+
+
+        function OnFailured(result) {
+            if (result.success) {
+                toastr.error(result.message);
+            }
+        }
+    </script>
+
     @Html.AntiForgeryToken()
 
     if (Request.IsAuthenticated)
@@ -35,7 +53,7 @@
                     </div> <!-- form-group end.// -->
                     <div class="col form-group">
                         <label>Địa chỉ</label>
-                        <input type="text" class="form-control" placeholder=""  name="Address">
+                        <input type="text" class="form-control" placeholder="" name="Address">
                     </div> <!-- form-group end.// -->
                 </div> <!-- form-row end.// -->
 
@@ -45,21 +63,21 @@
                         <select class="form-control" id="tinh" title="Chọn Tỉnh Thành">
                             <option value="0">@user.City</option>
                         </select>
-                        <input type="hidden" id="CityName" name="City">
+                        <input type="hidden" id="CityName" name="City" value="@user.City">
                     </div> <!-- form-group// -->
                     <div class="form-group col">
                         <label>Quận huyện</label>
                         <select class="form-control" id="quan" title="Chọn Quận Huyện">
                             <option value="0">@user.District</option>
                         </select>
-                        <input type="hidden" id="DistrictName" name="District">
+                        <input type="hidden" id="DistrictName" name="District" value="@user.District">
                     </div> <!-- form-group end.// -->
                     <div class="form-group col">
                         <label>Phường xã</label>
                         <select class="form-control" id="phuong" title="Chọn Phường Xã">
                             <option value="0">@user.Ward</option>
                         </select>
-                        <input type="hidden" id="WardName" name="Ward">
+                        <input type="hidden" id="WardName" name="Ward" value="@user.Ward">
                     </div> <!-- form-group end.// -->
                 </div> <!-- form-row.// -->
 
@@ -127,7 +145,7 @@
             <form role="form" style="max-width: 720px; margin: 0 auto;">
                 <div class="form-group col-md-12">
                     <label>Hình thức thanh toán</label>
-                    <div class="form-row">
+                    <div class="form-row" id="drTypePayment">
                         <div class="form-group col-sm-6">
                             <label class="js-check box">
                                 <input type="radio" name="TypePayment" value="1" checked>
@@ -145,10 +163,20 @@
                         </div>
                     </div> <!-- form row.// -->
                 </div>
-                <button class="subscribe btn btn-primary btn-block" type="submit"> Confirm  </button>
+                <div class="form-group" id="load_form_payment" style="display:none;">
+                    <h4> <label>Chọn phương thức thanh toán:</label><br /></h4>
+                    <h5>Cách 1: Chuyển hướng sang VNPAY chọn phương thức thanh toán</h5>
+                    <label><input type="radio" name="TypePaymentVN" value="0" checked /> Cổng thanh toán VNPAYQR</label>
+                    <h5>Cách 1: Tách phương thức thanh toán tại site của Merchant</h5>
+                    <label><input type="radio" name="TypePaymentVN" value="1" /> Thanh toán qua ứng dụng hỗ trợ VNPAYQR</label>
+                    <label><input type="radio" name="TypePaymentVN" value="2" /> ATM Tài khoản ngân hàng nội địa</label>
+                    <label><input type="radio" name="TypePaymentVN" value="3" /> Thanh toán qua thẻ quốc tế</label>
+                </div>
+                <button class="subscribe btn btn-primary btn-block" id="btnHidden" type="submit"> Confirm  </button>
             </form>
         </div> <!-- card-body.// -->
     </div> <!-- card .// -->
+    <div class="form-group" id="load_send"></div>
 }
 
 <script src="https://esgoo.net/scripts/jquery.js"></script>

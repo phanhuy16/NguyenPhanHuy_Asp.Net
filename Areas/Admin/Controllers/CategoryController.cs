@@ -18,7 +18,7 @@ namespace NguyenPhanHuy_2122110062.Areas.Admin.Controllers
         // GET: Admin/Category
         public ActionResult Index(string search, int? page)
         {
-            var pageSize = 5;
+            var pageSize = 3;
 
             if (page == null)
             {

@@ -13,6 +13,7 @@ namespace NguyenPhanHuy_2122110062.Controllers
         // GET: Product
         public ActionResult Index(Guid? id, string type, decimal? minPrice, decimal? maxPrice)
         {
+            ViewBag.Visitors_online = HttpContext.Application["visitors_online"];
             var items = context.Products.AsQueryable();
 
             if (id != null)

@@ -10,6 +10,7 @@ namespace NguyenPhanHuy_2122110062.Controllers
         // GET: Article
         public ActionResult Index(string alias)
         {
+            ViewBag.Visitors_online = HttpContext.Application["visitors_online"];
             var items = context.Posts.FirstOrDefault(x=>x.Alias == alias);
             return View(items);
         }

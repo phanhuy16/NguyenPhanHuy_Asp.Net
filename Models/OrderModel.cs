@@ -16,5 +16,6 @@ namespace NguyenPhanHuy_2122110062.Models
         public string City { get; set; }
         public string Email { get; set; }
         public int TypePayment { get; set; }
+        public int TypePaymentVN { get; set; }
     }
 }

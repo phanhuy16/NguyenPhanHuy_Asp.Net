@@ -32,6 +32,7 @@ namespace NguyenPhanHuy_2122110062.Models.Context
         public decimal TotalAmount { get; set; }
         public int Quantity { get; set; }
         public int TypePayment { get; set; }
+        public int Status { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }

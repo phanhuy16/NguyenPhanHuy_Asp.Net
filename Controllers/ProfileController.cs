@@ -32,6 +32,7 @@ namespace NguyenPhanHuy_2122110062.Controllers
 
         public ActionResult Index(string tab = "Account")
         {
+            ViewBag.Visitors_online = HttpContext.Application["visitors_online"];
             ViewBag.Active = tab;
 
             return View();

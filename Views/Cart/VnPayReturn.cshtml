@@ -1,0 +1,24 @@
+﻿
+
+@{
+    ViewBag.Title = "Thanh toán thành công";
+}
+
+<div class="container text-center my-5">
+    <div class="card shadow-sm" style="max-width: 500px; margin: 0 auto;">
+        <div class="card-body">
+            <div class="mb-4">
+                <i class="fas fa-check-circle text-success" style="font-size: 5rem;"></i>
+            </div>
+            <h2 class="card-title text-success">Thanh toán thành công!</h2>
+            <p class="card-text text-muted">@ViewBag.InnerText</p>
+            <hr>
+            <h5 class="text-primary">Thông tin đơn hàng</h5>
+            <p>Mã đơn hàng: <strong>#@ViewBag.Code </strong></p>
+            <p>Ngày đặt hàng: <strong>@ViewBag.CreatedDate.ToString("dd/MM/yyyy")</strong></p>
+            <hr>
+            <a href="@Url.Action("Index", "Home", new {})" class="btn btn-primary btn-block mt-4">Quay về trang chủ</a>
+            <a href="/order/history" class="btn btn-outline-secondary btn-block">Xem lịch sử đơn hàng</a>
+        </div>
+    </div>
+</div>

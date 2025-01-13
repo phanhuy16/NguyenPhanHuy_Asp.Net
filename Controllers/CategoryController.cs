@@ -13,6 +13,7 @@ namespace NguyenPhanHuy_2122110062.Controllers
         // GET: Category
         public ActionResult Index()
         {
+            ViewBag.Visitors_online = HttpContext.Application["visitors_online"];
             var items = context.ProductCategories.OrderByDescending(x => x.CreatedDate).ToList();
             return View(items);
         }

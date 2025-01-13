@@ -14,6 +14,7 @@ namespace NguyenPhanHuy_2122110062.Controllers
         // GET: News
         public ActionResult Index(int? page)
         {
+            ViewBag.Visitors_online = HttpContext.Application["visitors_online"];
             var pageSize = 10;
             if (page == null)
             {

@@ -34,23 +34,14 @@
 
 @section scripts{
     <script>
-        function OnSuccessCK(result) {
-            if (result.success) {
-                window.location.href = result.redirectUrl;
-            }
-            else {
-                console.error("Redirect URL is undefined or invalid:", result);
-            }
-        }
-
-
-        function OnFailured(result) {
-            if (result.success) {
-                toastr.error(result.message);
-            }
-        }
-
         $(document).ready(function () {
+            $('body').on('change', '#drTypePayment', function () {
+                var type = $('input[name="TypePayment"]:checked').val();
+                $('#load_form_payment').hide();
+                if (type === '2') {
+                    $('#load_form_payment').show();
+                }
+            })
             $('#myForm').validate({
                 rules: {
                     'CustomerName': {
@@ -64,7 +55,7 @@
                     },
                     'Email': {
                         required: true,
-                        Email: true
+                        email: true
                     },
                 },
                 messages: {
