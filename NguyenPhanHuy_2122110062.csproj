@@ -209,6 +209,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Filter\AdminAuthorization.cs" />
     <Compile Include="Filter\AuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -278,6 +279,10 @@
     <Compile Include="Migrations\202501131357302_AddStatusInOrder.Designer.cs">
       <DependentUpon>202501131357302_AddStatusInOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501140812563_NewTableWishlist.cs" />
+    <Compile Include="Migrations\202501140812563_NewTableWishlist.Designer.cs">
+      <DependentUpon>202501140812563_NewTableWishlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
@@ -297,6 +302,7 @@
     <Compile Include="Models\Context\Statistical.cs" />
     <Compile Include="Models\Context\Subscribe.cs" />
     <Compile Include="Models\Context\SystemSetting.cs" />
+    <Compile Include="Models\Context\Wishlist.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -3699,6 +3705,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\ckfinder\userfiles\" />
+    <Folder Include="Views\Wishlist\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -3753,6 +3760,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501131357302_AddStatusInOrder.resx">
       <DependentUpon>202501131357302_AddStatusInOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501140812563_NewTableWishlist.resx">
+      <DependentUpon>202501140812563_NewTableWishlist.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

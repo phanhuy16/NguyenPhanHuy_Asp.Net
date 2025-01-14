@@ -147,6 +147,12 @@
                             {
                                 strImages = image.Image;
                             }
+                            var wishlist = item.Wishlist.FirstOrDefault(x => x.UserName == User.Identity.Name);
+                            var isWishlist = false;
+                            if (wishlist != null)
+                            {
+                                isWishlist = true;
+                            }
                             if (item.IsNew)
                             {
                                 <article class="card card-product-list">
@@ -200,7 +206,15 @@
                                                 <p class="text-muted mt-3">Grand textile Co</p>
                                                 <p class="mt-3 d-flex align-items-center justify-content-between">
                                                     <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact supplier </a>
-                                                    <a href="#" class="btn btn-light"><i class="fa fa-heart"></i> Save </a>
+                                                    @if (isWishlist)
+                                                    {
+
+                                                        <a href="#" class="btn btn-light favorite active" data-id="@item.Id"><i class="fa fa-heart"></i> Save </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="#" class="btn btn-light favorite" data-id="@item.Id"><i class="fa fa-heart"></i> Save </a>
+                                                    }
                                                 </p>
 
                                                 <label class="custom-control mt-3 custom-checkbox">
@@ -354,9 +368,67 @@
             $("#toAmount").val($("#slider-range").slider("values", 1));
         }
 
+        function initFavorite() {
+            if ($('.favorite').length) {
+                var favs = $('.favorite');
+
+                favs.each(function () {
+                    var fav = $(this);
+                    var active = false;
+                    if (fav.hasClass('active')) {
+                        active = true;
+                    }
+
+                    fav.on('click', function () {
+                        var id = $(this).data('id');
+                        if (active) {
+                            fav.removeClass('active');
+                            active = false;
+                            DeleteWishlist(id);
+                        } else {
+                            fav.addClass('active');
+                            active = true;
+                            AddWishlist(id);
+                        }
+                    });
+                });
+            }
+        }
+
+        function AddWishlist(id) {
+            $.ajax({
+                url: '/Wishlist/AddWishlist',
+                type: 'POST',
+                data: { productId: id },
+                success: function (res) {
+                    if (res.success === false) {
+                        toastr.error(res.message);
+                    } else {
+                        toastr.success(res.message)
+                    }
+                }
+            });
+        }
+
+        function DeleteWishlist(id) {
+            $.ajax({
+                url: '/Wishlist/DeleteWishlist',
+                type: 'POST',
+                data: { id: id },
+                success: function (res) {
+                    if (res.success) {
+                        toastr.success(res.message)
+                    } else {
+                        toastr.error(res.message);
+                    }
+                }
+            });
+        }
+
         // Gọi hàm khi tài liệu đã sẵn sàng
         $(document).ready(function () {
             initPriceSlider();
+            initFavorite();
             $('body').on('click', '.filter_button', function () {
                 var minPrice = $('#fromAmount').val();
                 var maxPrice = $('#toAmount').val();

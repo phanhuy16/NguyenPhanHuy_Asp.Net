@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using NguyenPhanHuy_2122110062.Models;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,6 +9,7 @@ namespace NguyenPhanHuy_2122110062.Controllers
 {
     public class ProfileController : Controller
     {
+        private ApplicationDbContext context = new ApplicationDbContext();
         private ApplicationUserManager _userManager;
 
         public ProfileController()
@@ -58,7 +60,8 @@ namespace NguyenPhanHuy_2122110062.Controllers
 
         public ActionResult PartialWishlist()
         {
-            return PartialView("PartialWishlist");
+            var items = context.Wishlists.Where(x => x.UserName == User.Identity.Name).ToList();
+            return PartialView("PartialWishlist", items);
         }
 
         public ActionResult PartialSelling()

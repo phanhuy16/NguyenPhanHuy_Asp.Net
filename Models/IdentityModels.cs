@@ -46,6 +46,7 @@ namespace NguyenPhanHuy_2122110062.Models
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Subscribe> Subscribes { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<Wishlist> Wishlists { get; set; }
 
         public static ApplicationDbContext Create()
         {

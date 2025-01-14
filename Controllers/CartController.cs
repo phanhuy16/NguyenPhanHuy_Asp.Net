@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using NguyenPhanHuy_2122110062.Common.Payment;
 using static NguyenPhanHuy_2122110062.Common.Payment.VnPayLibrary;
 using System.Security.Policy;
+using Microsoft.AspNet.Identity;
 
 namespace NguyenPhanHuy_2122110062.Controllers
 {
@@ -259,7 +260,7 @@ namespace NguyenPhanHuy_2122110062.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CheckOut(OrderModel requied)
         {
-            var code = new { success = false, code = 1, Url = "", id = Guid.Empty };
+            var code = new { success = false, code = 1, Url = "" };
             if (ModelState.IsValid)
             {
                 ShoppingCart cart = Session["Cart"] as ShoppingCart;
@@ -275,6 +276,10 @@ namespace NguyenPhanHuy_2122110062.Controllers
                     order.Ward = requied.Ward;
                     order.Email = requied.Email;
                     order.Status = 1;
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        order.CustomerId = User.Identity.GetUserId();
+                    }
                     cart.Items.ForEach(x => order.OrderDetails.Add(new OrderDetail
                     {
                         Id = Guid.NewGuid(),
@@ -339,11 +344,11 @@ namespace NguyenPhanHuy_2122110062.Controllers
                     Common.Common.SendMail("Alistyle", "Đơn hàng mới #" + order.Code, contentAdmin.ToString(), ConfigurationManager.AppSettings["Email"]);
                     cart.ClearCart();
 
-                    code = new { success = true, code = requied.TypePayment, Url = "", id = order.Id };
+                    code = new { success = true, code = requied.TypePayment, Url = "" };
                     if (requied.TypePayment == 2)
                     {
                         var url = UrlPayment(requied.TypePaymentVN, order.Code);
-                        code = new { success = true, code = requied.TypePayment, Url = url, id = order.Id };
+                        code = new { success = true, code = requied.TypePayment, Url = url };
                     }
                 }
             }

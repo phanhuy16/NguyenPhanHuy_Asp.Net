@@ -16,6 +16,7 @@ namespace NguyenPhanHuy_2122110062.Models.Context
             this.ProductImage = new HashSet<ProductImage>();
             this.OrderDetail = new HashSet<OrderDetail>();
             this.Brand = new HashSet<Brand>();
+            this.Wishlist = new HashSet<Wishlist>();
         }
         [Key]
         public Guid Id { get; set; }
@@ -63,5 +64,6 @@ namespace NguyenPhanHuy_2122110062.Models.Context
         public virtual ICollection<ProductImage> ProductImage { get; set; }
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
         public virtual ICollection<Brand> Brand { get; set; }
+        public virtual ICollection<Wishlist> Wishlist { get; set; }
     }
 }
