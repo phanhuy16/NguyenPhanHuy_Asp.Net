@@ -88,12 +88,12 @@
                                         </i>
                                         View
                                     </a>
-                                    <a href="@Url.Action("Edit", "Account", new {area="Admin", user = item.UserName})" class="btn btn-info btn-xs">
+                                    <a href="@Url.Action("Edit", "Account", new {area="Admin", id = item.Id})" class="btn btn-info btn-xs">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </a>
-                                    <a href="#" data-id="@item.UserName" class="btn btn-danger btn-xs btnDelete">
+                                    <a href="#" data-user="@item.UserName" data-id="@item.Id" class="btn btn-danger btn-xs btnDelete">
                                         <i class="fas fa-trash">
                                         </i>
                                         Delete
@@ -121,25 +121,23 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            $('body').on('click', '.btnDelete', function () {
-                let id = $(this).data("id");
+            $('.btnDelete').click(function () {
+                var user = $(this).data('user')
+                var id = $(this).data('id')
                 let del = confirm("Bạn có muốn xoá bản ghi này không?")
                 if (del === true) {
                     $.ajax({
-                        url: '/Admin/Role/Delete',
+                        url: "/Admin/Account/DeleteAccount",
                         type: 'POST',
-                        data: { id: id },
-                        success: function (result) {
-                            if (result.success) {
-                                $('#trow_' + id).remove();
-                                toastr.success(result.message);
-                            } else {
-                                toastr.error(result.message);
+                        data: { user: user, id: id },
+                        success: function (res) {
+                            if (res.success) {
+                                $('trow_' + id).remove();
                             }
                         }
                     })
                 }
-            });
+            })
 
         });
     </script>

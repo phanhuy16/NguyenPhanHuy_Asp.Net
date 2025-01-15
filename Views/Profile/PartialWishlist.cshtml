@@ -15,7 +15,7 @@
                                 <a href="#" class="title">@item.Product.Title</a>
                                 <p class="price mb-2">@Format.FormatNumber(item.Product.PriceSale) VND</p>
                                 <a href="@Url.Action("Detail", "Product", new { alias = item.Product.Alias, id = item.Product.Id })" class="btn btn-secondary btn-sm"> Add to cart </a>
-                                <a href="#" class="btn btn-danger btn-sm btnDeleteWishlist" data-original-title="Remove from wishlist" data-id="@item.Id"> <i class="fa fa-times"></i> </a>
+                                <a href="#" class="btn btn-danger btn-sm btnDeleteWishlist" data-id="@item.Product.Id"> <i class="fa fa-times"></i> </a>
                             </figcaption>
                         </figure>
                     </div> <!-- col.// -->
@@ -26,28 +26,28 @@
     </div> <!-- card-body.// -->
 </article>
 
+<script src="~/Scripts/jquery-3.7.0.js"></script>
 <script>
     $(document).ready(function () {
         $('body').on('click', '.btnDeleteWishlist', function (e) {
             e.preventDefault();
             let id = $(this).data("id");
-            alert(id)
-            //let del = confirm("Bạn có muốn bỏ yêu thích sản phẩm này không?")
-            //if (del === true) {
-            //    $.ajax({
-            //        url: '/Wishlist/DeleteWishlist',
-            //        type: 'POST',
-            //        data: { id: id },
-            //        success: function (result) {
-            //            if (result.success) {
-            //                $('#trow_' + id).remove();
-            //                toastr.success(result.message);
-            //            } else {
-            //                toastr.error(result.message);
-            //            }
-            //        }
-            //    })
-            //}
+            let del = confirm("Bạn có muốn bỏ yêu thích sản phẩm này không?")
+            if (del === true) {
+                $.ajax({
+                    url: '/Wishlist/DeleteWishlist',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (result) {
+                        if (result.success) {
+                            $('#trow_' + id).remove();
+                            toastr.success(result.message);
+                        } else {
+                            toastr.error(result.message);
+                        }
+                    }
+                })
+            }
         });
     })
 </script>

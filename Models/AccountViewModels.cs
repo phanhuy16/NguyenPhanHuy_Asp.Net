@@ -86,7 +86,7 @@ namespace NguyenPhanHuy_2122110062.Models
         [Required]
         public string PhoneNumber { get; set; }
 
-        public string Role { get; set; }
+        public List<string> Role { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -102,6 +102,22 @@ namespace NguyenPhanHuy_2122110062.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class EditAccountViewModel
+    {
+        [Required]
+        public string UserName { get; set; }
+        [Required]
+        public string FullName { get; set; }
+        [Required]
+        public string PhoneNumber { get; set; }
+
+        public List<string> Role { get; set; }
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
     }
 
     public class EditViewModel

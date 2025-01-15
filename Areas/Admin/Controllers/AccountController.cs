@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using NguyenPhanHuy_2122110062.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace NguyenPhanHuy_2122110062.Areas.Admin.Controllers
@@ -116,7 +119,13 @@ namespace NguyenPhanHuy_2122110062.Areas.Admin.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    UserManager.AddToRole(user.Id, context.Roles.Find(model.Role).Name);
+                    if (model.Role != null)
+                    {
+                        foreach (var role in model.Role)
+                        {
+                            UserManager.AddToRole(user.Id, role);
+                        }
+                    }
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -142,6 +151,90 @@ namespace NguyenPhanHuy_2122110062.Areas.Admin.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Dashboard");
+        }
+
+        public ActionResult Edit(string id)
+        {
+            var item = UserManager.FindById(id);
+            var user = new EditAccountViewModel();
+            if (user != null)
+            {
+                var roleForUser = UserManager.GetRoles(id);
+                var roles = new List<string>();
+                if (roleForUser != null)
+                {
+                    foreach (var role in roleForUser)
+                    {
+                        roles.Add(role);
+                    }
+                }
+                user.FullName = item.FullName;
+                user.Email = item.Email;
+                user.PhoneNumber = item.PhoneNumber;
+                user.UserName = item.UserName;
+                user.Role = roles;
+            }
+            ViewBag.Roles = new SelectList(context.Roles.ToList(), "Name", "Name");
+            return View(user);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(EditAccountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = UserManager.FindByName(model.UserName);
+                user.Email = model.Email;
+                user.FullName = model.FullName;
+                user.PhoneNumber = model.PhoneNumber;
+                var result = await UserManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    var roleForUser = UserManager.GetRoles(user.Id);
+                    if (model.Role != null)
+                    {
+                        foreach (var role in model.Role)
+                        {
+                            var checkRole = roleForUser.FirstOrDefault(x => x.Equals(role));
+                            if (checkRole == null)
+                            {
+                                UserManager.AddToRole(user.Id, role);
+                            }
+                        }
+                    }
+
+                    return RedirectToAction("Index");
+                }
+                ViewBag.Roles = new SelectList(context.Roles.ToList(), "Name", "Name");
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteAccount(string user, string id)
+        {
+            var code = new { success = false };
+            var item = UserManager.FindByName(user);
+            if (item != null)
+            {
+                var roleForUser = UserManager.GetRoles(id);
+                if (roleForUser != null)
+                {
+                    foreach (var role in roleForUser)
+                    {
+                        await UserManager.RemoveFromRoleAsync(id, role);
+                    }
+                }
+                var res = await UserManager.DeleteAsync(item);
+                code = new { success = res.Succeeded };
+            }
+
+            return Json(code);
         }
 
         private IAuthenticationManager AuthenticationManager

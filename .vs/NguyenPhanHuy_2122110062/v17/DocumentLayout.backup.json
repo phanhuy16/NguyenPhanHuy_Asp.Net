@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|d:\\projects\\dotnet\\nguyenphanhuy_2122110062\\views\\profile\\partialwishlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|solutionrelative:views\\profile\\partialwishlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\areas\\admin\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|solutionrelative:areas\\admin\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|d:\\projects\\dotnet\\nguyenphanhuy_2122110062\\views\\product\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|solutionrelative:views\\product\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\areas\\admin\\views\\account\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|solutionrelative:areas\\admin\\views\\account\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|d:\\projects\\dotnet\\nguyenphanhuy_2122110062\\controllers\\wishlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|solutionrelative:controllers\\wishlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|d:\\projects\\dotnet\\nguyenphanhuy_2122110062\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|solutionrelative:views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|d:\\projects\\dotnet\\nguyenphanhuy_2122110062\\areas\\admin\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E629A1A-2FE5-4389-BCC5-BC80983D0CC9}|NguyenPhanHuy_2122110062.csproj|solutionrelative:areas\\admin\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Detail.cshtml",
-              "DocumentMoniker": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Views\\Product\\Detail.cshtml",
-              "RelativeDocumentMoniker": "Views\\Product\\Detail.cshtml",
-              "ToolTip": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Views\\Product\\Detail.cshtml",
-              "RelativeToolTip": "Views\\Product\\Detail.cshtml",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAAAHAAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-14T09:40:34.007Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "WishlistController.cs",
-              "DocumentMoniker": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Controllers\\WishlistController.cs",
-              "RelativeDocumentMoniker": "Controllers\\WishlistController.cs",
-              "ToolTip": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Controllers\\WishlistController.cs",
-              "RelativeToolTip": "Controllers\\WishlistController.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAADEAAAAIAAAAAAAAAA==",
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Areas\\Admin\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Areas\\Admin\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAKQAAAAAAAAAAAApwLAAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T09:34:05.474Z",
+              "WhenOpened": "2025-01-14T13:28:39.01Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PartialWishlist.cshtml",
-              "DocumentMoniker": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Views\\Profile\\PartialWishlist.cshtml",
-              "RelativeDocumentMoniker": "Views\\Profile\\PartialWishlist.cshtml",
-              "ToolTip": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Views\\Profile\\PartialWishlist.cshtml",
-              "RelativeToolTip": "Views\\Profile\\PartialWishlist.cshtml",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAACcAAAAnAAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Areas\\Admin\\Views\\Account\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Account\\Index.cshtml",
+              "ToolTip": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Areas\\Admin\\Views\\Account\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Account\\Index.cshtml",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-14T09:31:27.351Z",
+              "WhenOpened": "2025-01-15T05:28:56.789Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Views\\Product\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Product\\Index.cshtml",
-              "ToolTip": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Views\\Product\\Index.cshtml",
-              "RelativeToolTip": "Views\\Product\\Index.cshtml",
-              "ViewState": "AgIAAI0BAAAAAAAAAAAAAJ4BAAAWAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Areas\\Admin\\Views\\Account\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Account\\Edit.cshtml",
+              "ToolTip": "D:\\Projects\\DotNet\\NguyenPhanHuy_2122110062\\Areas\\Admin\\Views\\Account\\Edit.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Account\\Edit.cshtml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFsAAABmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-14T09:14:55.483Z",
+              "WhenOpened": "2025-01-15T05:20:56.769Z",
               "EditorCaption": ""
             }
           ]
