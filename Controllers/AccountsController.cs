@@ -151,10 +151,11 @@ namespace NguyenPhanHuy_2122110062.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { 
-                    FullName = model.FullName, 
-                    Email = model.Email, 
-                    PhoneNumber = model.PhoneNumber, 
+                var user = new ApplicationUser
+                {
+                    FullName = model.FullName,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
                     UserName = model.Email,
                     Ward = model.Ward,
                     District = model.District,
@@ -208,7 +209,7 @@ namespace NguyenPhanHuy_2122110062.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                if (user == null)
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
@@ -216,10 +217,10 @@ namespace NguyenPhanHuy_2122110062.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Accounts", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                Common.Common.SendMail("Alistyle", "Quên mật khẩu", "Bạn click vào <a href='" + callbackUrl + "'>link này</a> để reset mật khẩu", model.Email);
+                return RedirectToAction("ForgotPasswordConfirmation", "Accounts");
             }
 
             // If we got this far, something failed, redisplay form
@@ -257,12 +258,12 @@ namespace NguyenPhanHuy_2122110062.Controllers
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction("ResetPasswordConfirmation", "Accounts");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction("ResetPasswordConfirmation", "Accounts");
             }
             AddErrors(result);
             return View();

@@ -3701,6 +3701,11 @@
     <Content Include="Views\Contact\PartialSendMessage.cshtml" />
     <Content Include="Views\Menu\_MenuBrandLeft.cshtml" />
     <Content Include="Views\Cart\VnPayReturn.cshtml" />
+    <Content Include="Views\Accounts\ForgotPassword.cshtml" />
+    <Content Include="Views\Accounts\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Accounts\ResetPassword.cshtml" />
+    <Content Include="Views\Accounts\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Profile\ParitalOrderItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

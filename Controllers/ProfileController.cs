@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using NguyenPhanHuy_2122110062.Models;
+using System;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -55,7 +57,15 @@ namespace NguyenPhanHuy_2122110062.Controllers
 
         public ActionResult PartialOrder()
         {
-            return PartialView("PartialOrder");
+            if (User.Identity.IsAuthenticated)
+            {
+                var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                var user = userManager.FindByName(User.Identity.Name);
+                var items = context.Orders.Where(x => x.CustomerId == user.Id).ToList();
+                return PartialView(items);
+            }
+            return PartialView();
         }
 
         public ActionResult PartialWishlist()
@@ -114,6 +124,12 @@ namespace NguyenPhanHuy_2122110062.Controllers
             }
 
             return Json(new { success = false, message = "Cập nhật thất bại!" });
+        }
+
+        public ActionResult ParitalOrderItem(Guid id)
+        {
+            var item = context.OrderDetails.Where(x => x.OrderId == id).ToList();
+            return PartialView(item);
         }
     }
 }

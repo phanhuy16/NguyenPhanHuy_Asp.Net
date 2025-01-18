@@ -61,6 +61,7 @@ namespace NguyenPhanHuy_2122110062.Controllers
 
         public ActionResult Detail(string alias, Guid id)
         {
+            ViewBag.Visitors_online = HttpContext.Application["visitors_online"];
             var items = context.Products.Find(id);
             if (items != null)
             {

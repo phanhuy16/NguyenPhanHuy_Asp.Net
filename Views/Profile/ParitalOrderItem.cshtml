@@ -1,0 +1,34 @@
+﻿@model IEnumerable<NguyenPhanHuy_2122110062.Models.Context.OrderDetail>
+@using NguyenPhanHuy_2122110062.Common
+
+@if (Model != null && Model.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var strImages = "";
+                    var image = item.Product.ProductImage.FirstOrDefault(x => x.IsDefault);
+                    if (image != null)
+                    {
+                        strImages = image.Image;
+                    }
+                    <tr>
+                        <td width="65">
+                            <img src="@strImages" alt="@item.Product.Title" class="img-xs border">
+                        </td>
+                        <td>
+                            <p class="title mb-0">@item.Product.Title </p>
+                            <var class="price text-muted">@Format.FormatNumber(item.Product.PriceSale) VND</var>
+                        </td>
+                        <td> Seller <br> Nike clothing </td>
+                        <td width="250">
+                            <a href="@Url.Action("Detail", "Product", new { alias = item.Product.Alias, id = item.Product.Id })" class="btn btn-outline-primary">Track order</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div> <!-- table-responsive .end// -->
+}
